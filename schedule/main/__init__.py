@@ -1,5 +1,8 @@
 from schedule.main.prepare_data import prepare_data
+from schedule.main.prepare_org_chart import prepare_org_chart
+
 from schedule.main.employee.employee_table import create_employee_table
+from schedule.main.department.department_table import create_department_table
 
 def main():
     '''
@@ -11,6 +14,11 @@ def main():
     df = prepare_data()
     # Create the employees table
     create_employee_table(df)
+    # Load the org chart
+    org_chart = prepare_org_chart(df)
+    print("org chart is\n", org_chart)
+    # Create departments table
+    create_department_table(df, org_chart)
 
 if __name__ == "__main__":
     main()

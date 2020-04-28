@@ -1,6 +1,5 @@
 from sqlalchemy import create_engine
 from sqlalchemy.types import Integer, Text
-from sqlalchemy.orm import relationship
 
 from schedule.config import SQLAlchemyConfig
 from schedule.main.utils.db_utils import assemble_sqlalchemy_url

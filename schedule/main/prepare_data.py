@@ -1,7 +1,6 @@
 import pandas as pd
 
 from schedule.config import DataConfig
-from schedule.main.flat_to_hierarchical import get_org_chart
 from schedule.main.search import get_path_to_node
 
 def prepare_data():
@@ -44,7 +43,6 @@ def create_table_keys(df):
     df = df.assign(dept_id=(df["department_name"]).astype('category').cat.codes)
     return df
 
-
 def get_contacts_table():
     ''' Returns the contact info table of the database. '''
     df = load_as_dataframe()
@@ -53,9 +51,6 @@ def get_contacts_table():
     # Trying to find a node in the org chart
     org_df = generate_org_paths(org_df, org_chart)
     # print("temp is ", temp)
-    print("main df is\n", df)
-    print("org df is\n", org_df)
-    print("org chart is\n", org_chart)
 
 def prepare_org_chart(df, tree_depth=7):
     '''
@@ -72,7 +67,6 @@ def prepare_org_chart(df, tree_depth=7):
     org_struc = org_struc.str.split(":", n=-1, expand=True)
     columns = [i for i in range(0, min(tree_depth + 1, len(org_struc.columns)), 1)]
     org_struc = org_struc[columns]
-    print("org struc is ", org_struc)
     return org_table, get_org_chart(org_struc)
 
 def generate_org_paths(df, org_chart):
