@@ -2,6 +2,8 @@
 iris.csv
 # IDE-specific
 .vscode/
+# ignore sqlite data
+*.db
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

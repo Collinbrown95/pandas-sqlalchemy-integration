@@ -1,9 +1,10 @@
+'''
+Functions to convert flat file into hierarchical file - borrowed from this
+(https://stackoverflow.com/questions/43757965/convert-csv-to-json-tree-structure)
+StackExchange post - see link for more detail on how these functions work.
+'''
 from collections import defaultdict
-#==============================================================================
-# Functions to convert flat file into hierarchical file - borrowed from this
-# (https://stackoverflow.com/questions/43757965/convert-csv-to-json-tree-structure)
-# StackExchange post - see link for more detail on how these functions work.
-#==============================================================================
+
 def ctree():
     """ 
     One of the python gems. Making possible to have dynamic tree structure.
@@ -58,3 +59,10 @@ def flat_to_hierarchical(df):
     for name, leaf in tree.items():
         res.append(build_leaf(name, leaf))
     return res
+
+def get_org_chart(df):
+    '''
+    Returns an org chart as a python dict
+    '''
+    chart = flat_to_hierarchical(df)
+    return chart[0]["_children"][0]
