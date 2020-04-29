@@ -3,6 +3,7 @@ from schedule.main.prepare_org_chart import prepare_org_chart
 
 from schedule.main.employee.employee_table import create_employee_table
 from schedule.main.department.department_table import create_department_table
+from schedule.main.organization.organization_table import create_organization_table
 
 def main():
     '''
@@ -19,6 +20,8 @@ def main():
     print("org chart is\n", org_chart)
     # Create departments table
     create_department_table(df, org_chart)
+    # Create organizations table
+    create_organization_table(df, org_chart)
 
 if __name__ == "__main__":
     main()

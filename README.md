@@ -17,7 +17,7 @@ There is a ```main``` function which, in this example, is run as a scheduled job
 
 ```main``` should call all functions that are required to perform the workflow. Beyond this, there is no restriction on how modules should be structured inside of the main folder.
 
-![call graph](https://g.gravizo.com/svg?digraph%20G%20%7B%0A%20%20main%20-%3E%20prepare_data%20%5Blabel%3D%221%22%5D%3B%0A%20%20prepare_data%20-%3E%20%7Bload_as_dataframe%3B%20preprocess_columns%3B%20create_table_keys%7D%3B%0A%20%20prepare_data%20-%3E%20main%20%5Bcolor%3D%22red%22%20label%3D%22df%22%5D%3B%0A%20%20main%20-%3E%20create_employees_table%20%5Blabel%3D%222%22%5D%3B%0A%20%20main%20-%3E%20prepare_org_chart%20%5Blabel%3D%223%22%5D%3B%0A%20%20prepare_org_chart%20-%3E%20main%20%5Bcolor%3D%22red%22%20label%3D%22org%20chart%22%5D%3B%0A%20%20prepare_org_chart%20-%3E%20get_org_chart%3B%0A%20%20get_org_chart%20-%3E%20flat_to_hierarchical%3B%0A%20%20flat_to_hierarchical%20-%3E%20%7Bbuild_leaf%3B%20ctree%7D%3B%0A%20%20main%20-%3E%20create_department_table%20%5Blabel%3D%224%22%5D%3B%0A%20%20create_department_table%20-%3E%20%7Bget_department_org_chart%7D%3B%0A%20%20main%20-%3E%20create_organizations_table%20%5Blabel%3D%225%22%5D%3B%0A%7D)
+![call graph](https://g.gravizo.com/svg?digraph%20G%20%7B%0A%20%20main%20-%3E%20prepare_data%20%5Blabel%3D%221%22%5D%3B%0A%20%20prepare_data%20-%3E%20%7Bload_as_dataframe%3B%20preprocess_columns%3B%20create_table_keys%7D%3B%0A%20%20prepare_data%20-%3E%20main%20%5Bcolor%3D%22red%22%20label%3D%22df%22%5D%3B%0A%20%20main%20-%3E%20create_employees_table%20%5Blabel%3D%222%22%5D%3B%0A%20%20main%20-%3E%20prepare_org_chart%20%5Blabel%3D%223%22%5D%3B%0A%20%20prepare_org_chart%20-%3E%20main%20%5Bcolor%3D%22red%22%20label%3D%22org%20chart%22%5D%3B%0A%20%20prepare_org_chart%20-%3E%20get_org_chart%3B%0A%20%20get_org_chart%20-%3E%20flat_to_hierarchical%3B%0A%20%20flat_to_hierarchical%20-%3E%20%7Bbuild_leaf%3B%20ctree%7D%3B%0A%20%20main%20-%3E%20create_department_table%20%5Blabel%3D%224%22%5D%3B%0A%20%20create_department_table%20-%3E%20%7Bget_department_org_chart%7D%3B%0A%20%20main%20-%3E%20create_organization_table%20%5Blabel%3D%225%22%5D%3B%0A%20%20create_organization_table%20-%3E%20generate_org_paths%3B%0A%7D)
 <!-- This is the original graph
 <img src='https://g.gravizo.com/svg?
 digraph G {
@@ -32,7 +32,8 @@ digraph G {
   flat_to_hierarchical -> {build_leaf; ctree};
   main -> create_department_table [label="4"];
   create_department_table -> {get_department_org_chart};
-  main -> create_organizations_table [label="5"];
+  main -> create_organization_table [label="5"];
+  create_organization_table -> generate_org_paths;
 }
 '/>
 -->
@@ -55,3 +56,9 @@ Then copy + paste the encoded url into the image tag
 #### test
 
 #### playground
+
+
+## Resources
+1. [SQLalchemy guide ch 1](https://www.oreilly.com/library/view/essential-sqlalchemy-2nd/9781491916544/ch01.html)
+2. [sqlalchemy schema](https://overiq.com/sqlalchemy-101/defining-schema-in-sqlalchemy-orm/)
+3. [pandas with sqlalchemy](https://hackersandslackers.com/connecting-pandas-to-a-sql-database-with-sqlalchemy/)

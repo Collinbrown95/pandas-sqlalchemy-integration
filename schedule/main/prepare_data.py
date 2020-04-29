@@ -1,7 +1,7 @@
 import pandas as pd
 
 from schedule.config import DataConfig
-from schedule.main.search import get_path_to_node
+# from schedule.main.search import get_path_to_node
 
 def prepare_data():
     ''' Returns the prepared dataframe. '''
